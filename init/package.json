@@ -1,0 +1,44 @@
+{
+  "name": "<%= packageName %>",
+  "version": "0.0.1",
+  "description": "<%= packageDescription || packageName %>",
+  "main": "src/index.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",<% if (packageGitHubOrg) { %>
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/<%= packageGitHubOrg %>/<%= packageName %>.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/<%= packageGitHubOrg %>/<%= packageName %>/issues"
+  },
+  "homepage": "https://github.com/<%= packageGitHubOrg %>/<%= packageName %>",<% } %>
+  "scripts": {
+    "postinstall": "builder run npm:postinstall",
+    "preversion": "builder run npm:preversion",
+    "version": "builder run npm:version",
+    "postversion": "builder run npm:postversion",
+    "postpublish": "builder run npm:postpublish",
+    "test": "builder run npm:test"
+  },
+  "dependencies": {
+    "builder": "^3.2.2",
+    "fe-builder": "<%= archetype.package.version ? '^' + archetype.package.version : '*' %>"
+  },
+  "devDependencies": {
+    "fe-builder-dev": "^1.0.0"
+  },
+  "publishr": {
+    "dependencies": [
+      "^builder"
+    ],
+    "files": {
+      ".npmignore": ".npmignore.publishr"
+    },
+    "scripts": {
+      "postinstall": ""
+    }
+  }
+}
