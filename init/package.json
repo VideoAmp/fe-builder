@@ -1,0 +1,36 @@
+{
+  "name": "<%= packageName %>",
+  "version": "0.0.1",
+  "description": "<%= packageDescription || packageName %>",
+  "main": "src/index.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",<% if (packageGitHubOrg) { %>
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/<%= packageGitHubOrg %>/<%= packageName %>.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/<%= packageGitHubOrg %>/<%= packageName %>/issues"
+  },
+  "homepage": "https://github.com/<%= packageGitHubOrg %>/<%= packageName %>",<% } %>
+  "scripts": {
+    "test": "builder run npm:test"
+  },
+  "dependencies": {
+    "builder": "^3.2.2",
+    "fe-builder": "https://github.com/VideoAmp/fe-builder.git<%= archetype.package.version ? '#' + archetype.package.version : '#master' %>"
+  },
+  "publishr": {
+    "dependencies": [
+      "^builder"
+    ],
+    "files": {
+      ".npmignore": ".npmignore.publishr"
+    },
+    "scripts": {
+      "postinstall": ""
+    }
+  }
+}
